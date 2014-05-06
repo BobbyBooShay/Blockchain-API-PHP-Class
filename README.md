@@ -3,10 +3,9 @@
 ###PHP class for interactions with the [Blockchain Wallet API](https://blockchain.info/api/blockchain_wallet_api)
 
 ```php
+define("_MIN_CONFIRM_", 6);
 class Blockchain
 {
-    private $min_confirm = 6;
-    
     public function __construct( $blockchainid, $pw1, $pw2=false );
     public function changeWallet( $blockchainid, $pw1, $pw2=false );
     
@@ -27,12 +26,15 @@ class Blockchain
 
 ####Initialisation
 
-Set the minimum number of confirmations to consider for transactions in lists and balance checks. Do this with the first variable of the class, in the main file.
+Set the minimum number of confirmations to consider for transactions in lists and balance checks. Do this with the definition in the main file.
 
 ```php
+define("_MIN_CONFIRM_", 6);
+
+...
+
 class Blockchain
 {
-    private $min_confirm = 6;
     ...
 }
 ```
@@ -135,7 +137,13 @@ $listAll = $myWallet->listAddresses();
 
 if( $listAll !== false )
 {
-    $addresses = $listAll->addresses;
+    foreach( $listAll->addresses as $address )
+    {
+        echo( "Address: ".       $address->address.       "<br>".
+              "Balance: ".       $address->balance.       "<br>".
+              "Lbael: ".         $address->label.         "<br>".
+              "Total Received: ".$address->total_received."<br><br>" );
+    }    
 }
 ```
 
