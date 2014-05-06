@@ -197,6 +197,8 @@ if( $myBalance !== false )
 
 All `$options` are *optional*. `from` defaults to nothing, `shared` defaults to false, `fee` defaults to 50000 (0.0005), `note` defaults to nothing. Returns a message like "Sent 0.1 BTC to 1Gp4K5AnNmT6tdSt5Hv5EArsBBWQi169Ks", the transaction hash and an additional notice like "Some funds are pending confirmation and cannot be spent yet (Value 0.001 BTC)".
 
+*Divide satoshi by X to get btc and multiply btc by X to get satoshi (Where X = 100,000,000). The fee is added to the amount you want to send and debited from the wallet. So if you are sending 100,000 satoshi with a fee of 50,000 then 150,000 will be removed from your wallet.*
+
 ```php
 require_once("blockchain.php");
 
@@ -222,6 +224,8 @@ if( $sendCoins !== false )
 > Send a transaction to multiple recipients in the same transaction.
 
 Groups transactions in order to minimize transaction fees. `$payments` is required and must be an array with the address as the key and the amount to send in satoshi as the value. `$options` are *optional*, as with `sendCoins()`.
+
+*Divide satoshi by X to get btc and multiply btc by X to get satoshi (Where X = 100,000,000). The fee is added to the amount you want to send and debited from the wallet. So if you are sending 100,000 satoshi to person A, 200,000 to person B and 500,000 to person C with a fee of 50,000 then 850,000 will be removed from your wallet.*
 
 ```php
 require_once("blockchain.php");
