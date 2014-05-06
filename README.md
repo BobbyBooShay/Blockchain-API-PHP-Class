@@ -45,6 +45,10 @@ Require the class file, create a `Blockchain` wallet object and input your walle
 require_once("blockchain.php");
 
 $myWallet = new Blockchain( "Identifier", "Main Password", "Second Password" );
+
+# Use changeWallet to switch to another wallet
+
+$myWallet->changeWallet( "New Identifier", "New Main Password", "New Second Password" );
 ```
 
 ####Using `generateAddress`
